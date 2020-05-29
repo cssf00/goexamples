@@ -1,5 +1,5 @@
 # GoExamples
-Contains list of small go programs created to learn Golang capabilities
+Contains list of small go programs created to learn and demonstrate Golang capabilities
 
 # goroutine_gennum
 Accept command line argument "number of random number to generate", create four goroutines to generate random numbers, use channel to receive the numbers and print them out to STDOUT. Once the number of random number is reached, notify the goroutines to exit using done channel.
