@@ -21,6 +21,7 @@ func main() {
 
 	done := make(chan bool, gorNum)
 	numchan := make(chan int, gorNum)
+	defer close(numchan)
 
 	for i := 0; i < gorNum; i++ {
 		fmt.Printf("starting goroutine: %d\n", i+1)
@@ -37,16 +38,12 @@ L:
 				fmt.Printf("%d ", n)
 			} else {
 				fmt.Printf("\nGenerated enough numbers, notify goroutines to close\n")
-				for i := 0; i < gorNum; i++ {
-					done <- true
-				}
+				close(done)
 				break L
 			}
 		}
 	}
 
-	close(numchan)
-	close(done)
 	time.Sleep(5 * time.Second)
 }
 
